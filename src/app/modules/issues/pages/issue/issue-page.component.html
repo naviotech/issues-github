@@ -1,0 +1,13 @@
+<h1>Issue number: {{ numberIssue() }}</h1>
+<a routerLink="/">Atrás</a>
+
+@if(issueQuery.data()=== undefined){
+<p>Cargando issue...</p>
+}@else {
+<issue-coment [comentIssue]="issueQuery.data()!" />
+}
+@for (comment of issueQueryComment.data(); track comment.id) {
+<issue-coment [comentIssue]="comment" />
+}@empty {
+<p>Sin comentarios</p>
+}

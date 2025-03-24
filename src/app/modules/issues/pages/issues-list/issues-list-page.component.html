@@ -1,0 +1,31 @@
+<h1>Github Issues</h1>
+<dir class="my-5 border-b-2 border-blue-600"></dir>
+<section class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+  <div class="col-span-3 flex flex-col">
+    <div class="flex gap-2">
+      <button class="btn active cursor-pointer">All</button>
+      <button class="btn cursor-pointer">Open</button>
+      <button class="btn cursor-pointer">Closed</button>
+    </div>
+  </div>
+
+  <!-- Listado -->
+  <div class="mt-4 flex flex-col col-span-2">
+    <h3>Issues</h3>
+    @for (issue of issuesQuery.data(); track issue.id) {
+    <issue-item [issue]="issue" />
+    }@empty { @if(issuesQuery.isLoading()){
+    <p>Cargando issues...</p>
+    } }
+  </div>
+
+  <!-- Labels -->
+  <div>
+    <h3>Labels</h3>
+    @if(labelsQuery.isLoading()){
+    <p>Cargando...</p>
+    }@else {
+    <issues-label-selector [labels]="labelsQuery.data() ?? []" />
+    }
+  </div>
+</section>
